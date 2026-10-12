@@ -1,0 +1,13 @@
+{
+  "name": "reference-points",
+  "version": "0.1.0",
+  "description": "Short codes for questions, decisions, options, findings, risks, steps and actions, an end-of-turn status update, and numbering that survives compaction.",
+  "author": {
+    "name": "Sam Hasler",
+    "url": "https://github.com/SamHasler"
+  },
+  "homepage": "https://github.com/SamHasler/skills/tree/main/plugins/reference-points",
+  "repository": "https://github.com/SamHasler/skills",
+  "license": "MIT",
+  "keywords": ["reference-points", "communication", "status-update", "compaction"]
+}

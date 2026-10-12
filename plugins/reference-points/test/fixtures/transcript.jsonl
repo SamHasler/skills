@@ -1,0 +1,7 @@
+{"type":"user","message":{"role":"user","content":"❓ Q99 is an example quoted from the rules, not an issued code"}}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"❓ **Q03** - title\n🔮 O07 — an option\n- 👣 1 Todo: S02\n⚠️ R01 — a risk\nsee Q42 in prose without an emoji"}]}}
+not json at all
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"tool_use","id":"t1","name":"Read","input":{"text":"❓ Q77 inside a tool call"}}]}}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"- ❓ 2 Shut: Q13, Q14\n🤝 D02 — a decision\n🔍 F10 — a finding"}]}}
+{"type":"attachment","attachment":{"type":"hook_additional_context","content":"🔍 F88 from injected rules"}}
+{"type":"assistant","message":{"role":"assistant","content":[{"type":"text","text":"👣 S1000 has four digits and is not a code"}]}}

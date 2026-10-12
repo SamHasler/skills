@@ -1,0 +1,17 @@
+{
+  "name": "samhasler",
+  "owner": {
+    "name": "Sam Hasler",
+    "url": "https://github.com/SamHasler"
+  },
+  "description": "Sam Hasler's Claude Code plugins.",
+  "plugins": [
+    {
+      "name": "reference-points",
+      "source": "./plugins/reference-points",
+      "description": "Short codes for questions, decisions, options, findings, risks, steps and actions, an end-of-turn status update, and numbering that survives compaction.",
+      "category": "productivity",
+      "keywords": ["reference-points", "communication", "status-update", "compaction"]
+    }
+  ]
+}
