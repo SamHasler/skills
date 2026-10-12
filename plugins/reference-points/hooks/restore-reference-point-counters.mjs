@@ -14,16 +14,15 @@
 // maximum can only skip a number, never reuse one, so that is the safe direction.
 
 // The single definition of the code kinds. A test checks every row is in SKILL.md's
-// code table. Option codes restart under each D or Q, so a session-wide maximum would
-// be wrong rather than conservative: they are not counted.
+// code table. Every kind, options included, is one sequence that never restarts.
 export const CODES = [
-  { letter: 'Q', emoji: '❓', name: 'Question', counted: true },
-  { letter: 'S', emoji: '\u{1F463}', name: 'Step', counted: true },
-  { letter: 'A', emoji: '\u{1F3C3}', name: 'Action', counted: true },
-  { letter: 'D', emoji: '\u{1F91D}', name: 'Decision', counted: true },
-  { letter: 'O', emoji: '\u{1F52E}', name: 'Option', counted: false },
-  { letter: 'F', emoji: '\u{1F50D}', name: 'Finding', counted: true },
-  { letter: 'R', emoji: '⚠', name: 'Risk', counted: true },
+  { letter: 'Q', emoji: '❓', name: 'Question' },
+  { letter: 'S', emoji: '\u{1F463}', name: 'Step' },
+  { letter: 'A', emoji: '\u{1F3C3}', name: 'Action' },
+  { letter: 'D', emoji: '\u{1F91D}', name: 'Decision' },
+  { letter: 'O', emoji: '\u{1F52E}', name: 'Option' },
+  { letter: 'F', emoji: '\u{1F50D}', name: 'Finding' },
+  { letter: 'R', emoji: '⚠', name: 'Risk' },
 ]
 
 function assistantTexts(transcriptText) {
@@ -49,7 +48,7 @@ function assistantTexts(transcriptText) {
 // Returns { Q: 14, S: 2, ... } for each counted kind seen; kinds never issued are absent.
 export function highestIssuedCodes(transcriptText) {
   const counts = {}
-  const patterns = CODES.filter(c => c.counted).map(c => ({
+  const patterns = CODES.map(c => ({
     ...c,
     pattern: new RegExp(`\\b${c.letter}(\\d{1,3})\\b`, 'g'),
   }))
@@ -67,12 +66,12 @@ export function highestIssuedCodes(transcriptText) {
 
 // The text appended to the injected rules after a compaction; empty when nothing was issued.
 export function formatCounts(counts) {
-  const marks = CODES.filter(c => c.counted && counts[c.letter] !== undefined).map(
+  const marks = CODES.filter(c => counts[c.letter] !== undefined).map(
     c => `${c.letter}${String(counts[c.letter]).padStart(2, '0')}`,
   )
   if (marks.length === 0) return ''
   return [
     `Highest reference-point codes issued before this compaction, read from the session transcript: ${marks.join(' ')}.`,
-    'Continue numbering above these and never reissue a number. Option codes (O) restart under each D or Q, so none is given.',
+    'Continue numbering above these and never reissue a number, options included.',
   ].join('\n')
 }

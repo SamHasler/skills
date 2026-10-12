@@ -32,7 +32,7 @@ test('startup injects the rules without frontmatter and without counts', () => {
 
 test('compact appends the highest issued codes from the transcript', () => {
   const context = run({ source: 'compact', transcript_path: FIXTURE })
-  assert.match(context, /: Q14 S02 D02 F10 R01\./)
+  assert.match(context, /: Q14 S02 D02 O07 F10 R01\./)
 })
 
 test('compact with an unreadable transcript says the counts are unavailable', () => {

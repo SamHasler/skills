@@ -6,15 +6,22 @@ import { formatCounts, highestIssuedCodes } from '../hooks/restore-reference-poi
 const fixture = await readFile(new URL('./fixtures/transcript.jsonl', import.meta.url), 'utf8')
 
 test('takes the highest code per kind from assistant text lines carrying that kind’s emoji', () => {
-  assert.deepEqual(highestIssuedCodes(fixture), { Q: 14, S: 2, D: 2, F: 10, R: 1 })
+  assert.deepEqual(highestIssuedCodes(fixture), { Q: 14, S: 2, D: 2, O: 7, F: 10, R: 1 })
 })
 
-test('ignores user and attachment content, tool calls, emoji-less prose and option codes', () => {
+test('ignores user and attachment content, tool calls and emoji-less prose', () => {
   const counts = highestIssuedCodes(fixture)
   assert.notEqual(counts.Q, 99, 'user content counted')
   assert.notEqual(counts.Q, 77, 'tool call counted')
   assert.notEqual(counts.F, 88, 'attachment counted')
-  assert.equal(counts.O, undefined, 'option codes counted')
+})
+
+test('counts option codes, which never restart', () => {
+  const lines = [
+    JSON.stringify({ type: 'assistant', message: { content: '\u{1F52E} O40 — an option\n\u{1F52E} O41 ➡️ the recommended one' } }),
+    JSON.stringify({ type: 'assistant', message: { content: '\u{1F52E} O03 — an option quoted from earlier' } }),
+  ].join('\n')
+  assert.equal(highestIssuedCodes(lines).O, 41)
 })
 
 test('reads codes from tally lines, not only from headings', () => {
@@ -36,7 +43,7 @@ test('returns no counts for an empty transcript', () => {
 })
 
 test('formats counts with a leading zero, in code-table order', () => {
-  const text = formatCounts({ R: 3, Q: 14, S: 6 })
-  assert.match(text, /: Q14 S06 R03\./)
+  const text = formatCounts({ R: 3, O: 41, Q: 14, S: 6 })
+  assert.match(text, /: Q14 S06 O41 R03\./)
   assert.match(text, /never reissue/)
 })

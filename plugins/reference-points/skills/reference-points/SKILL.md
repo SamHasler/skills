@@ -47,7 +47,7 @@ Options hang off a D or a Q and nothing else. A question about a finding or a ri
 
 ➡️ O02. ...
 
-Each option line is `🔮 Onn — what it is`. The recommended option replaces its em dash with ➡️, and the ➡️ line after the options says why it is recommended. Word the question so that "yes" accepts the recommended option. Option numbers restart under each D or Q.
+Each option line is `🔮 Onn — what it is`. The recommended option replaces its em dash with ➡️, and the ➡️ line after the options says why it is recommended. Word the question so that "yes" accepts the recommended option. Option numbers never restart: the next question's first option continues from the last option issued, so `O41` names one option however long ago it was offered.
 
 Citing the document code in the header is mandatory whenever a chat question is about something already written down: `❓ Q15 (R02, D02) — …`. It is the only bridge between the chat and document sequences.
 
