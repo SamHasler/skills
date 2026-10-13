@@ -20,15 +20,15 @@ Reference points let you and the user refer back to things without restating the
 
 Assign a code when presenting three or more of anything below, never for a short simple answer. Introduce each at the start of a line, prefixed with its emoji, never first mid-sentence. Once assigned, a code is fixed for the rest of the session.
 
-| Code  |     | Name     | Lives in   | Whose                                                       |
-| ----- | --- | -------- | ---------- | ----------------------------------------------------------- |
-| `Q01` | ❓  | Question | chat only  | —                                                           |
-| `S01` | 👣  | Step     | chat only  | yours: you can perform it, though it may need approval      |
-| `A01` | 🏃  | Action   | files+chat | the user's: you cannot perform it, approval or not          |
-| `D01` | 🤝  | Decision | files+chat | the user's to make                                          |
-| `O01` | 🔮  | Option   | files+chat | only ever under a D or Q                                    |
-| `F01` | 🔍  | Finding  | files+chat | —                                                           |
-| `R01` | ⚠️  | Risk     | files+chat | —                                                           |
+| Code  |     | Name     | Lives in   | Whose                                                  |
+| ----- | --- | -------- | ---------- | ------------------------------------------------------ |
+| `Q01` | ❓  | Question | chat only  | —                                                      |
+| `S01` | 👣  | Step     | chat only  | yours: you can perform it, though it may need approval |
+| `A01` | 🏃  | Action   | files+chat | the user's: you cannot perform it, approval or not     |
+| `D01` | 🤝  | Decision | files+chat | the user's to make                                     |
+| `O01` | 🔮  | Option   | files+chat | only ever under a D or Q                               |
+| `F01` | 🔍  | Finding  | files+chat | —                                                      |
+| `R01` | ⚠️  | Risk     | files+chat | —                                                      |
 
 A Step is a push, a ticket transition, a review update: yours to do, once approved. An Action is posting in a chat tool, installing software, anything behind a credential or a screen you cannot reach. Invent a code for a kind not listed here. Emoji are chat only; never write them into a file.
 
@@ -49,7 +49,7 @@ Options hang off a D or a Q and nothing else. A question about a finding or a ri
 
 Each option line is `🔮 Onn — what it is`. The recommended option replaces its em dash with ➡️, and the ➡️ line after the options says why it is recommended. Word the question so that "yes" accepts the recommended option. Option numbers never restart: the next question's first option continues from the last option issued, so `O41` names one option however long ago it was offered.
 
-Citing the document code in the header is mandatory whenever a chat question is about something already written down: `❓ Q15 (R02, D02) — …`. It is the only bridge between the chat and document sequences.
+Citing the document code in the header is mandatory whenever a chat question is about something already written down: `❓ Q15 (R02, D02) — …`. When an answer creates or settles a D, say so in chat with both codes, for example `D07 records Q12 O27`: the question could not cite a D that did not exist when it was asked. These two rules are the only bridge between the chat and document sequences, so a search of the transcript for either code finds the other.
 
 This form applies to every question you put to the user, including those raised by another skill that runs a question-and-answer process (an interview, a grilling, a clarification round). Keep that skill's structure and rounds; render each of its questions in this form, numbered from the session's `Q` sequence.
 

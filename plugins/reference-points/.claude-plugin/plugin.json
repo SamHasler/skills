@@ -1,6 +1,6 @@
 {
   "name": "reference-points",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Short codes for questions, decisions, options, findings, risks, steps and actions, an end-of-turn status update, and numbering that survives compaction.",
   "author": {
     "name": "Sam Hasler",
