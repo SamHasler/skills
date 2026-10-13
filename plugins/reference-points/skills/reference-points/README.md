@@ -2,6 +2,13 @@
 
 For people who have the plugin installed. The rules the agent follows are in [`SKILL.md`](SKILL.md); the design notes below are about Claude Code.
 
+- [What it does](#what-it-does)
+- [Example](#example)
+- [How it works](#how-it-works)
+- [If the rules don't appear](#if-the-rules-dont-appear)
+- [Design notes](#design-notes)
+- [Credits](#credits)
+
 ## What it does
 
 Short codes for the things a coding agent and its user need to refer back to: questions, decisions, options, findings, risks, steps and actions. The agent numbers them (`Q01`, `D01`, `F01`, ...), renders choices as options under a question with a recommendation marked ➡️, and ends each hand-back with a status update listing what is open, shut and outstanding. The numbering survives context compaction.
