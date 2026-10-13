@@ -1,17 +1,31 @@
 # reference-points
 
-For people who have the plugin installed. The rules the agent follows are in [`SKILL.md`](SKILL.md); the design notes below are about Claude Code.
+For people who have the plugin installed. The rules the agent follows are in [`SKILL.md`](SKILL.md); most of the design notes below are about Claude Code.
 
 - [What it does](#what-it-does)
 - [Example](#example)
 - [How it works](#how-it-works)
 - [If the rules don't appear](#if-the-rules-dont-appear)
 - [Design notes](#design-notes)
+  - [Why questions and steps stay out of documents](#why-questions-and-steps-stay-out-of-documents)
+  - [Claude Code](#claude-code)
 - [Credits](#credits)
 
 ## What it does
 
 Short codes for the things a coding agent and its user need to refer back to: questions, decisions, options, findings, risks, steps and actions. The agent numbers them (`Q01`, `D01`, `F01`, ...), renders choices as options under a question with a recommendation marked ➡️, and ends each hand-back with a status update listing what is open, shut and outstanding. The numbering survives context compaction.
+
+| Kind     | Code  | Lives in           |
+| -------- | ----- | ------------------ |
+| Question | `Q01` | chat only          |
+| Step     | `S01` | chat only          |
+| Action   | `A01` | chat and documents |
+| Decision | `D01` | chat and documents |
+| Option   | `O01` | chat and documents |
+| Finding  | `F01` | chat and documents |
+| Risk     | `R01` | chat and documents |
+
+Questions and steps are the working conversation, so their codes mean something only inside the session. Everything else can be written into a document, which must make sense on its own; see [Why questions and steps stay out of documents](#why-questions-and-steps-stay-out-of-documents).
 
 ## Example
 
@@ -75,6 +89,12 @@ Ask the agent to quote the line in its context that starts "The reference-points
 - Check the plugin is enabled: `claude plugin list`.
 
 ## Design notes
+
+### Why questions and steps stay out of documents
+
+Questions and steps are working conversation, so their codes exist only in the session. Decisions, findings, risks and actions can be written into documents, and a document must make sense to a reader who never saw the session, so it never cites a chat code. The link runs one way: a chat question about something written down cites it (`❓ Q15 (R02, D02)`), and when an answer creates a decision the agent says so with both codes (`D07 records Q12 O27`), so searching the transcript for `D07` finds the discussion behind it.
+
+### Claude Code
 
 **Why a hook and not a Claude Code mod.** A mod's `prompt.compose` and `prompt.context` events would put the rules in the system prompt or the first message without a shell or Node. Measured on Claude Code 2.1.293 on 2026-10-09: both fire in a headless `claude -p` session, and neither fires in the Claude Desktop app's Code tab, even in a session started with the mod already installed. A command hook is the channel that works in both.
 
