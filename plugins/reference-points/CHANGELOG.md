@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+The status update rules no longer contradict each other. One rule says a message sent while the agent still has work running is a progress note and gets no status update. A later line said to give one update per turn, which read as compulsory. That line now says at most one update per turn.
+
 ## 0.2.1
 
 When an answer creates or settles a decision, the agent now names both codes in chat (for example `D07 records Q12 O27`), so a transcript search for the decision finds the question behind it. Questions cannot cite a decision that did not exist when they were asked, so this link was missing before.

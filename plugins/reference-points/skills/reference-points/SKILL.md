@@ -82,7 +82,7 @@ End with a status update only when you hand back to the user with nothing of you
 
 List every number individually, never as a range like `Q01-03`, which defeats search. `Shut` means closed by this message; `Open` is everything still outstanding. Superseded items get their own row, never folded into `Shut`. Already-closed items may be left out, and other kinds need no tally.
 
-Give one update per turn, covering the state at the end of it. A change made after answering is folded into the closing update, not reported twice.
+Give at most one update per turn, covering the state at the end of it. A change made after answering is folded into the closing update, not reported twice.
 
 ## After compaction
 
