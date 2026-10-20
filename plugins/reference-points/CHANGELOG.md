@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.3
+
+The agent now keeps questions and steps out of subagent briefs as well as files. A brief states what a question or step contains, never its code or a paraphrase of it, and carries no codes of any kind. Before sending a brief or writing a file, the agent checks it for codes and for references to questions, options or steps.
+
+Option codes are now chat only, like question and step codes. A decision written into a file names the chosen option and the rejected ones in words.
+
 ## 0.2.2
 
 The status update rules no longer contradict each other. One rule says a message sent while the agent still has work running is a progress note and gets no status update. A later line said to give one update per turn, which read as compulsory. That line now says at most one update per turn.

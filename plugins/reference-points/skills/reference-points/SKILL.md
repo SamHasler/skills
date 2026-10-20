@@ -26,15 +26,23 @@ Assign a code when presenting three or more of anything below, never for a short
 | `S01` | 👣  | Step     | chat only  | yours: you can perform it, though it may need approval |
 | `A01` | 🏃  | Action   | files+chat | the user's: you cannot perform it, approval or not     |
 | `D01` | 🤝  | Decision | files+chat | the user's to make                                     |
-| `O01` | 🔮  | Option   | files+chat | only ever under a D or Q                               |
+| `O01` | 🔮  | Option   | chat only  | only ever under a D or Q                               |
 | `F01` | 🔍  | Finding  | files+chat | —                                                      |
 | `R01` | ⚠️  | Risk     | files+chat | —                                                      |
 
 A Step is a push, a ticket transition, a review update: yours to do, once approved. An Action is posting in a chat tool, installing software, anything behind a credential or a screen you cannot reach. Invent a code for a kind not listed here. Emoji are chat only; never write them into a file.
 
-`Q` and `S` are chat-only and monotonic per session: they never restart. When you keep numbered documents, the other kinds share the single durable sequence those documents carry, and chat refers to them by that number. Without documents, every kind is a session-wide sequence like `Q` and `S`.
+`Q`, `S` and `O` are chat-only and monotonic per session: they never restart. When you keep numbered documents, the other kinds share the single durable sequence those documents carry, and chat refers to them by that number. Without documents, every kind is a session-wide sequence like `Q` and `S`.
 
 Codes carry a leading zero for single digits (`Q01`, not `Q1`): the Claude Desktop app's in-conversation search (Ctrl+F in the Code tab) ignores queries shorter than three characters ([anthropics/claude-code#92634](https://github.com/anthropics/claude-code/issues/92634)).
+
+## Briefs and files
+
+Questions, options and steps belong to your conversation with the user. Never mention them in a brief for a subagent or in a file you write: not by code, and not by a paraphrase such as "the open question about the hook test". Write what they contain instead: the fact to check, the change to make, the decision already taken. A subagent cannot see the chat, so a reference tells it nothing, and it copies whatever references it is given into the files it writes and into its reply.
+
+A brief carries no codes of any kind. D, F, R and A codes appear in a file only when that file keeps the sequence. A decision written into a file names the chosen option and the rejected ones in words. When one brief asks several things, number them within the brief and match the answers back yourself.
+
+Before sending a brief or writing a file, search it for codes and for references to questions, options or steps, and rewrite each one as the thing itself.
 
 ## Questions and options
 

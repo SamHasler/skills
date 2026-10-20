@@ -7,7 +7,7 @@ For people who have the plugin installed. The rules the agent follows are in [`S
 - [How it works](#how-it-works)
 - [If the rules don't appear](#if-the-rules-dont-appear)
 - [Design notes](#design-notes)
-  - [Why questions and steps stay out of documents](#why-questions-and-steps-stay-out-of-documents)
+  - [Why questions, options and steps stay out of documents](#why-questions-options-and-steps-stay-out-of-documents)
   - [Claude Code](#claude-code)
 - [Credits](#credits)
 
@@ -21,11 +21,11 @@ Short codes for the things a coding agent and its user need to refer back to: qu
 | Step     | `S01` | chat only          |
 | Action   | `A01` | chat and documents |
 | Decision | `D01` | chat and documents |
-| Option   | `O01` | chat and documents |
+| Option   | `O01` | chat only          |
 | Finding  | `F01` | chat and documents |
 | Risk     | `R01` | chat and documents |
 
-Questions and steps are the working conversation, so their codes mean something only inside the session. Everything else can be written into a document, which must make sense on its own; see [Why questions and steps stay out of documents](#why-questions-and-steps-stay-out-of-documents).
+Questions, options and steps are the working conversation, so their codes mean something only inside the session. Everything else can be written into a document, which must make sense on its own; see [Why questions, options and steps stay out of documents](#why-questions-options-and-steps-stay-out-of-documents).
 
 ## Example
 
@@ -90,9 +90,11 @@ Ask the agent to quote the line in its context that starts "The reference-points
 
 ## Design notes
 
-### Why questions and steps stay out of documents
+### Why questions, options and steps stay out of documents
 
-Questions and steps are working conversation, so their codes exist only in the session. Decisions, findings, risks and actions can be written into documents, and a document must make sense to a reader who never saw the session, so it never cites a chat code. The link runs one way: a chat question about something written down cites it (`❓ Q15 (R02, D02)`), and when an answer creates a decision the agent says so with both codes (`D07 records Q12 O27`), so searching the transcript for `D07` finds the discussion behind it.
+Questions, options and steps are working conversation, so their codes exist only in the session. Decisions, findings, risks and actions can be written into documents, and a document must make sense to a reader who never saw the session, so it never cites a chat code. The link runs one way: a chat question about something written down cites it (`❓ Q15 (R02, D02)`), and when an answer creates a decision the agent says so with both codes (`D07 records Q12 O27`), so searching the transcript for `D07` finds the discussion behind it. A decision written into a document names its options in words: in an evaluation, agents copied the chat's option numbers into a plan's decisions, where they meant nothing to a reader of the plan.
+
+A brief for a subagent follows the same rule, for the same reason: the subagent never sees the session either. The brief states what a question, option or step contains, never its code or a paraphrase of it, because a subagent copies the references it is given into the files it writes and its reply. The rule was added after an agent put question codes into a brief and the subagent wrote them into its report.
 
 ### Claude Code
 
